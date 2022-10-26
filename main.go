@@ -9,12 +9,11 @@ import (
 type contextMessageKey interface{}
 
 func main() {
-	var key contextMessageKey = "message"
-	ctx := context.WithValue(context.Background(), key, "My first message")
+	logger := logger.NewLogger()
+	ctxBackground := context.Background()
+	context := context.WithValue(ctxBackground, "id", "1234")
 
-	loggerCtx := logger.NewLoggerCtx(ctx)
-
-	loggerCtx.SimpleMessageWithContextField()
+	logger.WithContext(context).Info(context, "Hello")
 }
 
 
